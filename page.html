@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculatrice</title>
+</head>
+
+<body>
+    <h1>Calculatrice</h1>
+
+    <div">
+        <table>
+            <tr>
+                <td><button onclick="ce()">CE</button></td>
+                <td colspan="3"><input type="text" id="number" value="0" disabled></td>
+            </tr>
+            <tr>
+                <td><button onclick="stockageCaractere('7')">7</button></td>
+                <td><button onclick="stockageCaractere('8')">8</button></td>
+                <td><button onclick="stockageCaractere('9')">9</button></td>
+                <td><button onclick="stockageCaractere('+')">+</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="stockageCaractere('4')">4</button></td>
+                <td><button onclick="stockageCaractere('5')">5</button></td>
+                <td><button onclick="stockageCaractere('6')">6</button></td>
+                <td><button onclick="stockageCaractere('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="stockageCaractere('1')">1</button></td>
+                <td><button onclick="stockageCaractere('2')">2</button></td>
+                <td><button onclick="stockageCaractere('3')">3</button></td>
+                <td><button onclick="stockageCaractere('*')">*</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="stockageCaractere('0')">0</button></td>
+                <td><button onclick="stockageCaractere('.')">.</button></td>
+                <td><button onclick="evalChaine()">=</button></td>
+                <td><button onclick="stockageCaractere('/')">/</button></td>                
+            </tr>
+        </table>
+
+    </div>
+
+
+    <script>
+
+        let chaine = 0;
+        let resultat;
+
+        function stockageCaractere(a) {
+
+            if (chaine == 0) {
+                if (a == '+' || a == '-' || a == '*' || a == '/') {
+                    chaine = resultat + a;
+                }else{
+                  chaine = a;  
+                }                
+            } else {
+                chaine = chaine + a;
+            }
+            document.getElementById("number").value = chaine;
+        }
+
+        function evalChaine() {
+            resultat = eval(chaine);
+            document.getElementById("number").value = resultat;
+            chaine = 0;
+        }
+
+        function ce() {
+            document.getElementById("number").value = 0;
+            chaine = 0;
+            resultat = 0;
+        }
+
+    </script>
+
+</body>
+
+</html>
